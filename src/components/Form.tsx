@@ -22,7 +22,7 @@ const Form: FC<Props> = (props: Props) => {
         <div className={classes.form}>
             <TextInput
                 fullWidth={false}
-                label={"Input Task"}
+                label={"Add Task..."}
                 multiline={false}
                 required={false}
                 rows={1}

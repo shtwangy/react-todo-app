@@ -9,7 +9,7 @@ interface Props {
     rows: number;
     value: string;
     type: React.InputHTMLAttributes<unknown>['type'];
-    onChange: () => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TextInput: FC<Props> = (props: Props) => {
@@ -24,6 +24,7 @@ const TextInput: FC<Props> = (props: Props) => {
             value={props.value}
             type={props.type}
             onChange={props.onChange}
+            variant="filled"
         />
     );
 };

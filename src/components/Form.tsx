@@ -25,12 +25,10 @@ const Form: FC<Props> = (props: Props) => {
     const classes = useStyles();
 
     const inputTextHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value);
         props.setInputText(e.target.value);
     };
 
     const submitTodoHandler = () => {
-        console.log('submit');
         props.setTodos([
             ...props.todos,
             {
@@ -65,7 +63,7 @@ const Form: FC<Props> = (props: Props) => {
                 <SelectBox
                     label={'FILTER'}
                     required={true}
-                    value={'ALL'}
+                    value={'all'}
                     options={filters}
                     select={() => {}}
                 />

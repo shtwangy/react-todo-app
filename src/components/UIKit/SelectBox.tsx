@@ -13,7 +13,7 @@ interface Props {
         id: string;
         name: string;
     }[];
-    select: () => void
+    select: (e: React.ChangeEvent<{ value: unknown }>) => void
 }
 
 const useStyles = makeStyles({

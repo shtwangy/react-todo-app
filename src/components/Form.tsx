@@ -10,6 +10,8 @@ interface Props {
     setTodos: (todos: Todo[]) => void;
     inputText: string;
     setInputText: (s: string) => void;
+    status: string;
+    setStatus: (s: string) => void;
 }
 
 const useStyles = makeStyles(() => ({
@@ -39,6 +41,11 @@ const Form: FC<Props> = (props: Props) => {
         ]);
         props.setInputText('');
     };
+
+    const statusHandler = (e: React.ChangeEvent<{ value: unknown }>) => {
+        props.setStatus(e.target.value as string);
+    }
+
     const filters = [
         {id: 'all', name: 'ALL'},
         {id: 'completed', name: 'Completed'},
@@ -63,9 +70,9 @@ const Form: FC<Props> = (props: Props) => {
                 <SelectBox
                     label={'FILTER'}
                     required={true}
-                    value={'all'}
+                    value={props.status}
                     options={filters}
-                    select={() => {}}
+                    select={statusHandler}
                 />
             </div>
         </div>

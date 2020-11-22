@@ -5,6 +5,7 @@ import {Todo} from "../types/todo";
 
 interface Props {
     todos: Todo[];
+    setTodos: (todos: Todo[]) => void;
 }
 
 const TodoList: FC<Props> = (props: Props) => {
@@ -13,7 +14,14 @@ const TodoList: FC<Props> = (props: Props) => {
         <div>
             <List>
                 {todos.length > 0 && (
-                    todos.map(todo => <TodoListItem key={todo.id} todo={todo} />)
+                    todos.map(
+                        todo =>
+                            <TodoListItem
+                                key={todo.id}
+                                todo={todo}
+                                todos={todos}
+                                setTodos={props.setTodos}
+                            />)
                 )}
             </List>
         </div>

@@ -10,6 +10,8 @@ import {Todo} from "../types/todo";
 
 interface Props {
     todo: Todo;
+    todos: Todo[];
+    setTodos: (todos: Todo[]) => void;
 }
 
 const useStyles = makeStyles(() => ({
@@ -24,6 +26,11 @@ const useStyles = makeStyles(() => ({
 const TodoListItem: FC<Props> = (props: Props) => {
     const classes = useStyles();
     const todo = props.todo;
+
+    const deleteHandler = () => {
+        props.setTodos(props.todos.filter(el => el.id !== todo.id))
+    };
+
     return (
         <ListItem className={classes.todo}>
             <ListItemText primary={todo.text} />
@@ -31,7 +38,12 @@ const TodoListItem: FC<Props> = (props: Props) => {
                 <IconButton aria-label="complete" color="primary">
                     <DoneIcon />
                 </IconButton>
-                <IconButton edge="end" aria-label="delete" color="secondary">
+                <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    color="secondary"
+                    onClick={deleteHandler}
+                >
                     <DeleteIcon />
                 </IconButton>
             </ListItemSecondaryAction>

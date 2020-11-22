@@ -20,6 +20,13 @@ const useStyles = makeStyles(() => ({
         background: 'white',
         color: 'black',
         transition: 'all 1s ease'
+    },
+    completedTodo: {
+        margin: '0.5rem',
+        background: 'white',
+        color: 'black',
+        transition: 'all 1s ease',
+        opacity: '0.5'
     }
 }));
 
@@ -44,8 +51,11 @@ const TodoListItem: FC<Props> = (props: Props) => {
     };
 
     return (
-        <ListItem className={classes.todo}>
-            <ListItemText primary={todo.text} />
+        <ListItem className={todo.completed ? classes.completedTodo : classes.todo}>
+            <ListItemText
+                primary={todo.text}
+                primaryTypographyProps={{style: {textDecoration: todo.completed ? 'line-through' : ''}}}
+            />
             <ListItemSecondaryAction>
                 <IconButton
                     aria-label="complete"

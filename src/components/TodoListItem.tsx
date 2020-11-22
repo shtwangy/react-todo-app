@@ -25,17 +25,33 @@ const useStyles = makeStyles(() => ({
 
 const TodoListItem: FC<Props> = (props: Props) => {
     const classes = useStyles();
+    const todos = props.todos;
     const todo = props.todo;
 
+    const completeHandler = () => {
+        props.setTodos(todos.map(item => {
+            if (item.id === todo.id) {
+                return {
+                    ...item, completed: !item.completed
+                };
+            }
+            return item;
+        }))
+    };
+
     const deleteHandler = () => {
-        props.setTodos(props.todos.filter(el => el.id !== todo.id))
+        props.setTodos(todos.filter(el => el.id !== todo.id))
     };
 
     return (
         <ListItem className={classes.todo}>
             <ListItemText primary={todo.text} />
             <ListItemSecondaryAction>
-                <IconButton aria-label="complete" color="primary">
+                <IconButton
+                    aria-label="complete"
+                    color="primary"
+                    onClick={completeHandler}
+                >
                     <DoneIcon />
                 </IconButton>
                 <IconButton
